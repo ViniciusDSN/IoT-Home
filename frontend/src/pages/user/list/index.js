@@ -3,12 +3,17 @@ import { Button } from "../../../components";
 import { Table, Popconfirm } from "antd";
 import { useEffect, useState } from "react";
 import api from "../../../services/api";
+import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
 
 const List = () => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const alert = useAlert();
+    const navigate = useNavigate();
 
     async function getUsers(){
         setLoading(true);
@@ -24,7 +29,7 @@ const List = () => {
         }
     };
 
-    async function removeUser(){
+    async function removeUser(id){
         setLoading(true);
     
         try {
@@ -39,7 +44,12 @@ const List = () => {
 
     useEffect(() => {
         getUsers()
-    }, [])
+    }, [success]);
+
+    useEffect(() => {
+        if (error) alert.error("Não foi possível realizar essa ação")
+        if (success) alert.show("Ação realizada com sucesso")
+    }, [error, success]);
 
     const columns = [
         {
@@ -62,7 +72,10 @@ const List = () => {
             align: "center",
             render: (text, record) => (
                 <div style={{ display:"flex", justifyContent:"center" }}>
-                    <Button label='Editar' />
+                    <Button
+                        label="Editar"
+                        onClick={() => navigate("/create")}
+                    />
                     <div style={{ marginLeft:"10px" }} />
                     <Popconfirm
                         title="Tem certeza que deseja excluir?"
@@ -70,7 +83,11 @@ const List = () => {
                         okText="Sim"
                         cancelText="Não"
                     >
-                        <Button label='Excluir' type="primary" danger={true} />
+                        <Button
+                            label="Excluir"
+                            type="primary"
+                            danger={true}
+                        />
                     </Popconfirm>
                 </div>
             )
@@ -80,7 +97,11 @@ const List = () => {
     return (
         <>
             <Header>
-                <Button label="Adicionar Usuário" type="primary" />
+                <Button
+                    label="Adicionar Usuário"
+                    type="primary"
+                    onClick={() => navigate("/create")}
+                />
             </Header>
             
             <Table columns={columns} dataSource={data}/>
