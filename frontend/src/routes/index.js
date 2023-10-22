@@ -14,7 +14,7 @@ const RoutesComponent = () => {
                 element={
                     <Menu
                         title="Usuários"
-                        subTitle="Aqui estão os usuários:"
+                        subTitle=""
                     >
                         <List />
                     </Menu>
@@ -25,7 +25,7 @@ const RoutesComponent = () => {
                 element={
                     <Menu
                         title="Usuários"
-                        subTitle="Aqui você pode criar os usuários:"
+                        subTitle=""
                         onBack={() => navigate("/")}
                     >
                         <Create />

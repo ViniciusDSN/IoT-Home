@@ -74,7 +74,7 @@ const List = () => {
                 <div style={{ display:"flex", justifyContent:"center" }}>
                     <Button
                         label="Editar"
-                        onClick={() => navigate("/create")}
+                        onClick={() => navigate("/create", {state: {id: record.id}})}
                     />
                     <div style={{ marginLeft:"10px" }} />
                     <Popconfirm
