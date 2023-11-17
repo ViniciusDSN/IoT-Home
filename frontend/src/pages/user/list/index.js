@@ -1,5 +1,5 @@
 import { Header } from "./styles";
-import { Button } from "../../../components";
+import { Button, Loading } from "../../../components";
 import { Table, Popconfirm } from "antd";
 import { useEffect, useState } from "react";
 import api from "../../../services/api";
@@ -103,8 +103,8 @@ const List = () => {
                     onClick={() => navigate("/create")}
                 />
             </Header>
-            
-            <Table columns={columns} dataSource={data}/>
+            {loading && <Loading/>}
+            {!loading && <Table columns={columns} dataSource={data}/>}
         </>
     );
 };
