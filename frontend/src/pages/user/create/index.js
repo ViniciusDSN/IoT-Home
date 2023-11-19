@@ -12,7 +12,6 @@ import { getUserById } from "./functions/getUserById";
 import { updateUser } from "./functions/updateUser";
 
 const Create = () => {
-
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const alert = useAlert();
@@ -47,7 +46,7 @@ const Create = () => {
 
     useEffect(() => {
         if (location?.state?.id) {
-            getUser()
+            getUser();
         }
     }, [location]);
 
