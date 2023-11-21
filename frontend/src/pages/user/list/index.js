@@ -49,7 +49,7 @@ const List = () => {
     useEffect(() => {
         if (error) alert.error("Não foi possível realizar essa ação")
         if (success) alert.show("Ação realizada com sucesso")
-    }, [error, success]);
+    }, [error, success, alert]);
 
     const columns = [
         {
@@ -100,7 +100,7 @@ const List = () => {
                 <Button
                     label="Adicionar Usuário"
                     type="primary"
-                    onClick={() => navigate("/create")}
+                    onClick={() => navigate("/register")}
                 />
             </Header>
             {loading && <Loading/>}

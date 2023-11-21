@@ -6,6 +6,7 @@ export const saveUser = async (data, setLoading, alert, navigate) => {
     try {
         await api.post("/user", data);
         alert.show("Usuário criado com sucesso")
+        
         navigate("/")
         setLoading(false);
     } catch (e) {
