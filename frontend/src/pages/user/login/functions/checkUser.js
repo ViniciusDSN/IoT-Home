@@ -6,7 +6,6 @@ export const checkUser = async (data, setLoading, alert, navigate) => {
     const response = await api.post("/user/login", data);
 
     try {
-
         if (response.data.success) {
             alert.show("Login realizado com sucesso");
             navigate("/");

@@ -17,4 +17,14 @@ model User {
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  dispositivos Dispositivo[]
+}
+
+model Dispositivo {
+  id Int @id @default(autoincrement())
+  userId Int
+  sensorValor Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  usuario User  @relation(fields: [userId], references: [id])
 }

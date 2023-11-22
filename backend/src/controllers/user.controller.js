@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { userValidation } from "../validations/user.validation";
-import { createUser, deleteUser, getAll, getById, updateUser } from "../repositories/user.repository";
+import { createUser, deleteUser, getAll, getById, updateUser, findUserByEmail } from "../repositories/user.repository";
 
 export const create = async (req, res) => {
     try {
@@ -50,3 +50,23 @@ export const remove = async (req, res) => {
         res.status(400).send(e);
     }
 }
+
+export const login = async (req, res) => {
+    try {
+        const user = await findUserByEmail(req.body.email);
+
+        console.log('User from DB:', user);
+
+        if (!user || user.password !== req.body.password) {
+            res.status(401).json({ error: 'Credenciais inválidas' });
+            return;
+        }
+
+        console.log('Login successful');
+        res.status(200).send(user);
+    } catch (e) {
+        console.error('Error during login:', e);
+        res.status(400).send(e);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+};
