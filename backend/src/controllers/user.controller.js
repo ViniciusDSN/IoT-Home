@@ -55,18 +55,22 @@ export const login = async (req, res) => {
     try {
         const user = await findUserByEmail(req.body.email);
 
-        console.log('User from DB:', user);
+        // if (!user) {
+        //     console.log("Usuário não existe");
+        //     res.status(404).send();;
+        //     return;
+        // }
 
-        if (!user || user.password !== req.body.password) {
-            res.status(401).json({ error: 'Credenciais inválidas' });
+        const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+
+        if (!passwordMatch) {
+        //    console.log("Credenciais inválidas");
+            res.status(202).send();
             return;
         }
 
-        console.log('Login successful');
         res.status(200).send(user);
     } catch (e) {
-        console.error('Error during login:', e);
-        res.status(400).send(e);
-        res.status(500).json({ error: 'Erro interno do servidor' });
+        res.status(204).send();
     }
 };

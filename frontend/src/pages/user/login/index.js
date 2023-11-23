@@ -28,24 +28,10 @@ const Login = () => {
     });
 
     const login = async (data) => {
-        console.log(data);
         setLoading(true);
 
-        checkUser(data, setLoading, alert, navigate);
-
         try {
-            console.log("console.log");
-        //   if (user && user.password === data.password) {
-        //     console.log("Usuário logado");
-        //     alert.show("Usuário logado com sucesso");
-        //     navigate("/");
-        //     setLoading(false);
-        //   }
-        //   else {
-        //     console.log("Usuário inexistente");
-        //     alert.show("Usuário inexistente", { type: "error" });
-        //     setLoading(false);
-        //   }
+            checkUser(data, setLoading, alert, navigate);
         } catch (e) {
           console.error("Erro no login:", e.message);
           alert.show("Erro no login. Tente novamente.");
