@@ -3,6 +3,7 @@ import List from '../pages/user/list';
 import Create from '../pages/user/create';
 import Register from '../pages/user/register';
 import Login from '../pages/user/login';
+import Devices from '../pages/user/devices';
 import { Menu } from '../components';
 
 const RoutesComponent = () => {
@@ -55,6 +56,18 @@ const RoutesComponent = () => {
                         onBack={() => navigate("/")}
                     >
                         <Login />
+                    </Menu>
+                }
+            />
+            <Route
+                path="/devices"
+                element={
+                    <Menu
+                        title="Devices"
+                        subTitle=""
+                        onBack={() => navigate("/")}
+                    >
+                        <Devices />
                     </Menu>
                 }
             />

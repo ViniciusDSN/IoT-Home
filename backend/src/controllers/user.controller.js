@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { userValidation } from "../validations/user.validation";
-import { createUser, deleteUser, getAll, getById, updateUser, findUserByEmail } from "../repositories/user.repository";
+import { createUser, deleteUser, getAll, getById, updateUser, findUserByEmail, receiveDeviceData, retrieveDeviceData } from "../repositories/user.repository";
 
 export const create = async (req, res) => {
     try {
@@ -72,5 +72,33 @@ export const login = async (req, res) => {
         res.status(200).send(user);
     } catch (e) {
         res.status(204).send();
+    }
+};
+
+export const receiveData = async (req, res) => {
+    const { sensorValue } = req.body;
+    console.log("1");
+
+    try {
+        // Convert sensorValue to a boolean value
+        const sensorCheck = Boolean(sensorValue);
+        const userId = 1;
+
+        // Save in the database using Prisma
+        const devices = await receiveDeviceData(sensorCheck, userId);
+
+        res.status(200).send(devices);
+    } catch (e) {
+        console.log("2");
+        res.status(400).send(e);
+    }
+};
+
+export const retrieveData = async (req, res) => {
+    try {
+        const devices = await retrieveDeviceData();
+        res.status(200).send(devices);
+    } catch (e) {
+        res.status(400).send(e);
     }
 };

@@ -17,14 +17,14 @@ model User {
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  dispositivos Dispositivo[]
+  devices Device[]
 }
 
-model Dispositivo {
+model Device {
   id Int @id @default(autoincrement())
   userId Int
-  sensorValor Boolean
+  sensorValue Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  usuario User  @relation(fields: [userId], references: [id])
+  user User  @relation(fields: [userId], references: [id])
 }

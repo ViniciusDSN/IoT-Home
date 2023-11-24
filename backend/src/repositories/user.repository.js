@@ -58,7 +58,7 @@ export const updateUser = async (id, data) => {
         console.log(err);
     }
   
-    return  ;
+    return;
 }
 
 export const deleteUser = async (id, data) => {
@@ -91,4 +91,30 @@ export const findUserByEmail = async (email) => {
     }
 
     return user;
+}
+
+export const receiveDeviceData = async (sensorCheck, userId) => {
+    try {
+      console.log("3");
+      const device = await prisma.device.create({
+        data: {
+          sensorValue: sensorCheck,
+          userId: userId,
+        },
+      });
+  
+      return device;
+    } catch (error) {
+      console.error('Prisma error:', error);
+      throw error; // Rethrow the error to be caught in the calling function
+    }
+  }
+  
+
+export const retrieveDeviceData = async (data) => {
+    const devices = await prisma.device.findMany({
+        where: data,
+    });
+
+    return devices;
 }
