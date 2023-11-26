@@ -15,6 +15,12 @@ const Devices = () => {
   const { handleSubmit } = useForm();
 
   useEffect(() => {
+    const isAuthenticated = localStorage.getItem('user');
+    if (!isAuthenticated) {
+      navigate('/register');
+      return;
+    }
+
     const fetchData = async () => {
       try {
         const receivedData = await retrieveData({}, setLoading, alert, navigate);

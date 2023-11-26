@@ -10,7 +10,8 @@ export const checkUser = async (data, setLoading, alert, navigate) => {
     try {
         if (response.status === 200) {
             alert.show("Login realizado com sucesso");
-            navigate("/");
+            localStorage.setItem('user', response.data.id);
+            navigate("/devices");
             setLoading(false);
         }
         else if (response.status === 202) {

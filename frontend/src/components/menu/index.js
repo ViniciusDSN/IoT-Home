@@ -8,10 +8,22 @@ import icon from "../../img/iothomeicon.png";
 const MenuComponent = ({ children, onBack, title, subTitle }) => {
     const navigate = useNavigate();
 
+    const goToProfile = () => {
+        const userId = localStorage.getItem('user');
+
+        if (userId) {
+            navigate("/profile", { state: { id: userId } });
+        } else {
+            navigate("/register");
+        }
+    };
+
     return (
         <>
             <Body>
-                <LogoImage src={icon} alt="IoT Home" />
+                <Link onClick={() => navigate("/")}>
+                    <LogoImage src={icon} alt="IoT Home" />
+                </Link>
                 <SessionLinks>
                     <Link onClick={() => navigate("/")}>
                         <Icon>
@@ -26,11 +38,13 @@ const MenuComponent = ({ children, onBack, title, subTitle }) => {
                         Dispositivos
                     </Link>
                 </SessionLinks>
-                <UserIconContainer>
-                    <UserIcon>
-                        <IoPersonCircle color="#e0e0e2" />
-                    </UserIcon>
-                </UserIconContainer>
+                <Link onClick={goToProfile}>
+                    <UserIconContainer>
+                        <UserIcon>
+                            <IoPersonCircle color="#e0e0e2" />
+                        </UserIcon>
+                    </UserIconContainer>
+                </Link>
             </Body>
             <Children>
                 <PageHeader

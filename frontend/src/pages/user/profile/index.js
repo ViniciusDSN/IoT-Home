@@ -56,6 +56,11 @@ const Profile = () => {
         updateUser(location.state.id, data, setLoading, alert, navigate);
     };
 
+    const logout = () => {
+        localStorage.clear();
+        navigate("/");
+    };
+
     return(
         <>
         <div style={{ marginTop: "20px" }} />
@@ -73,7 +78,7 @@ const Profile = () => {
                                         onChange={onChange}
                                         ref={ref}
                                         label="Nome"
-                                        placeholder="Digite o nome"
+                                        placeholder="Digite o nome atualizado"
                                     />
                                 )}
                             />
@@ -89,7 +94,7 @@ const Profile = () => {
                                         onChange={onChange}
                                         ref={ref}
                                         label="Email"
-                                        placeholder="Digite o email"
+                                        placeholder="Digite o novo email"
                                     />
                                 )}
                             />
@@ -105,7 +110,7 @@ const Profile = () => {
                                         onChange={onChange}
                                         ref={ref}
                                         label="Senha"
-                                        placeholder="Digite a senha"
+                                        placeholder="Digite a nova senha"
                                         type="password"
                                     />
                                 )}
@@ -114,6 +119,12 @@ const Profile = () => {
                         </Col>
                         <Col span={24}>
                             <SessionButtons>
+                                <Button
+                                    label="Desconectar"
+                                    onClick={logout}
+                                    danger={true}
+                                />
+                                <div style={{ marginLeft: "10px" }} />
                                 <Button
                                     label="Cancelar"
                                     onClick={(() => navigate("/"))}

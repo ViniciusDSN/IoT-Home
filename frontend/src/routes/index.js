@@ -64,7 +64,7 @@ const RoutesComponent = () => {
                     <Menu
                         title="Login"
                         subTitle=""
-                        onBack={() => navigate("/")}
+                        onBack={() => navigate("/register")}
                     >
                         <Login />
                     </Menu>
@@ -86,4 +86,4 @@ const RoutesComponent = () => {
     )
 }
 
-export default RoutesComponent
+export default RoutesComponent;
