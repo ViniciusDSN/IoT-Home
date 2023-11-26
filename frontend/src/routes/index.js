@@ -5,7 +5,7 @@ import Profile from '../pages/user/profile';
 import Register from '../pages/user/register';
 import Login from '../pages/user/login';
 import Devices from '../pages/user/devices';
-import { Menu } from '../components';
+import { Menu, Layout } from '../components';
 
 const RoutesComponent = () => {
     
@@ -16,9 +16,11 @@ const RoutesComponent = () => {
             <Route
                 path="/"
                 element={
-                    <Menu>
-                        <Home />
-                    </Menu>
+                    <Layout>
+                        <Menu>
+                            <Home />
+                        </Menu>
+                    </Layout>
                 }
             />
             <Route

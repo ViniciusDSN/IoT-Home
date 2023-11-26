@@ -26,7 +26,7 @@ export const Link = styled.a`
     text-decoration: none;
     cursor: pointer;
     color: inherit !important;
-    margin: 0 15px; /* ajuste conforme necessário */
+    margin: 0 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
