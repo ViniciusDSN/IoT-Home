@@ -42,11 +42,12 @@ const Profile = () => {
         setValue("name", user?.name)
         setValue("email", user?.email)
     }
-
+    
     useEffect(() => {
         if (location?.state?.id) {
             getUser();
         }
+    // eslint-disable-next-line
     }, [location]);
 
     const save = (data) => {
