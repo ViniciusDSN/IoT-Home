@@ -1,19 +1,36 @@
-import { Body, SessionLinks, Link, Children } from "./styles";
+import { Body, SessionLinks, Link, LogoImage, UserIconContainer, UserIcon, Icon, Children } from "./styles";
 import { PageHeader } from '@ant-design/pro-layout';
 import { useNavigate } from "react-router-dom";
+import { AiOutlineWifi, AiFillHome } from 'react-icons/ai';
+import { IoPersonCircle } from "react-icons/io5";
+import icon from "../../img/iothomeicon.png";
 
 const MenuComponent = ({ children, onBack, title, subTitle }) => {
-
     const navigate = useNavigate();
 
     return (
         <>
             <Body>
-                <h3>IoT Home</h3>
+                <LogoImage src={icon} alt="IoT Home" />
                 <SessionLinks>
-                    <Link onClick={() => navigate("/")}>Usuários</Link>
-                    <Link onClick={() => navigate("/a")}>Dispositivos</Link>
+                    <Link onClick={() => navigate("/")}>
+                        <Icon>
+                            <AiFillHome color="#e0e0e2" />
+                        </Icon>
+                        Home
+                    </Link>
+                    <Link onClick={() => navigate("/devices")}>
+                        <Icon>
+                            <AiOutlineWifi color="#e0e0e2" />
+                        </Icon>
+                        Dispositivos
+                    </Link>
                 </SessionLinks>
+                <UserIconContainer>
+                    <UserIcon>
+                        <IoPersonCircle color="#e0e0e2" />
+                    </UserIcon>
+                </UserIconContainer>
             </Body>
             <Children>
                 <PageHeader

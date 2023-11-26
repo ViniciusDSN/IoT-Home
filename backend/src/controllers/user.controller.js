@@ -76,20 +76,18 @@ export const login = async (req, res) => {
 };
 
 export const receiveData = async (req, res) => {
-    const { sensorValue } = req.body;
-    console.log("1");
+    const { sensorValue, user } = req.body;
 
     try {
         // Convert sensorValue to a boolean value
         const sensorCheck = Boolean(sensorValue);
-        const userId = 1;
+        const userCheck = user;
 
         // Save in the database using Prisma
-        const devices = await receiveDeviceData(sensorCheck, userId);
+        const devices = await receiveDeviceData(sensorCheck, userCheck);
 
         res.status(200).send(devices);
     } catch (e) {
-        console.log("2");
         res.status(400).send(e);
     }
 };

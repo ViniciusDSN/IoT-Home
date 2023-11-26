@@ -1,13 +1,7 @@
 import styled from "styled-components";
 
-export const SessionButtons = styled.div`
+export const Header = styled.div`
     display: flex;
     justify-content: flex-end;
-`;
-
-export const Link = styled.a`
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    color: #0059B2 !important;
+    margin: 30px 0;
 `;

@@ -9,9 +9,10 @@ export const retrieveData = async (data, setLoading, alert, navigate) => {
 
     try {
         if (response.status === 200) {
-            console.log(response.data);
+            //console.log(response.data);
             //navigate("/");
             setLoading(false);
+            return response.data;
         }
         else if (response.status === 400) {
             console.log("Não foi possível verificar o banco de dados");

@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Row, Col } from "antd";
 import { SessionButtons, Link } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { saveUser } from "../create/functions/saveUser";
+import { saveUser } from "./functions/saveUser";
 import { useState } from "react";
 import { useAlert } from "react-alert";
 

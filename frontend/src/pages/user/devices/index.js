@@ -1,54 +1,90 @@
-import { Input, ErrorMessage, Button, Loading } from "../../../components";
-import { useForm, Controller } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Row, Col } from "antd";
-import { SessionButtons, Link } from "./styles";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Button, Loading } from "../../../components";
+import { useForm } from "react-hook-form";
+import { Header } from "./styles"; // Importe Header do seu arquivo de estilos
+import { Table } from "antd";
 import { useAlert } from "react-alert";
+import { useNavigate } from "react-router-dom";
 import { retrieveData } from "./functions/retrieveData";
 
 const Devices = () => {
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    const alert = useAlert();
+  const [loading, setLoading] = useState(false);
+  const [sensorData, setSensorData] = useState([]);
+  const navigate = useNavigate();
+  const alert = useAlert();
+  const { handleSubmit } = useForm();
 
-    const {handleSubmit} = useForm({});
-
-    const receive = async (data) => {
-        setLoading(true);
-
-        try {
-            console.log("1");
-            retrieveData(data, setLoading, alert, navigate);
-        } catch (e) {
-            console.log("2");
-            console.error("Erro no login:", e.message);
-            alert.show("Erro no login. Tente novamente.");
-            setLoading(false);
-        }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const receivedData = await retrieveData({}, setLoading, alert, navigate);
+        setSensorData(receivedData);
+      } catch (e) {
+        console.error("Erro:", e.message);
+        alert.show("Ocorreu um erro. Tente novamente.");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    return(
-        <>
-        <div style={{ marginTop: "20px" }} />
-            <form onSubmit={handleSubmit(receive)}>
-                <SessionButtons>
-                    <Button
-                        label="Cancelar"
-                        onClick={(() => navigate("/"))}
-                    />
-                    <div style={{ marginLeft: "10px" }} />
-                    <Button
-                        label="Testar"
-                        type="primary"
-                        htmlType="submit"
-                    />
-                </SessionButtons>
-            </form>
-        </>
+    fetchData();
+  }, [alert, navigate]);
+
+  const receive = async (data) => {
+    setLoading(true);
+
+    try {
+      const receivedData = await retrieveData(data, setLoading, alert, navigate);
+      setSensorData(receivedData);
+      setLoading(false);
+    } catch (e) {
+      console.error("Erro:", e.message);
+      alert.show("Ocorreu um erro. Tente novamente.");
+      setLoading(false);
+    }
+  };
+
+  const renderSensorData = () => {
+    const sortedData = [...sensorData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    return (
+      <div>
+        <Table
+          columns={[
+            {
+              title: "Estado",
+              dataIndex: "sensorValue",
+              key: "sensorValue",
+              render: (text) => (text ? "Porta fechada" : "Porta aberta"),
+            },
+            {
+              title: "Horário",
+              dataIndex: "createdAt",
+              key: "createdAt",
+              render: (text) => new Date(text).toLocaleString(),
+            },
+          ]}
+          dataSource={sortedData}
+        />
+      </div>
     );
+  };
+
+  return (
+    <>
+        {loading && <Loading />} {/* Show loading indicator while data is being fetched */}
+
+        {sensorData && sensorData.length > 0 && renderSensorData()} {/* Render the sensor data if available */}
+    
+        <Header>
+            <Button
+            label="Atualizar"
+            type="primary"
+            htmlType="submit"
+            onClick={handleSubmit(receive)}
+            />
+        </Header>
+    </>
+  );
 };
 
 export default Devices;

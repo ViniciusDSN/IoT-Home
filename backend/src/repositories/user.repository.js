@@ -93,13 +93,12 @@ export const findUserByEmail = async (email) => {
     return user;
 }
 
-export const receiveDeviceData = async (sensorCheck, userId) => {
+export const receiveDeviceData = async (sensorCheck, userCheck) => {
     try {
-      console.log("3");
       const device = await prisma.device.create({
         data: {
           sensorValue: sensorCheck,
-          userId: userId,
+          userId: userCheck,
         },
       });
   
@@ -114,6 +113,13 @@ export const receiveDeviceData = async (sensorCheck, userId) => {
 export const retrieveDeviceData = async (data) => {
     const devices = await prisma.device.findMany({
         where: data,
+        select: {
+            id: false,
+            userId: false,
+            sensorValue: true,
+            createdAt: true,
+            updatedAt: false,
+        },
     });
 
     return devices;

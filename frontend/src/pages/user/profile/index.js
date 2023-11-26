@@ -5,13 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Row, Col } from "antd";
 import { SessionButtons } from "./styles";
 import { useNavigate, useLocation } from "react-router-dom";
-import { saveUser } from "./functions/saveUser";
 import { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import { getUserById } from "./functions/getUserById";
 import { updateUser } from "./functions/updateUser";
 
-const Create = () => {
+const Profile = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const alert = useAlert();
@@ -51,15 +50,10 @@ const Create = () => {
     }, [location]);
 
     const save = (data) => {
-        if (!location?.state?.id) {
-            saveUser(data, setLoading, alert, navigate);
+        if (!data.password) {
+            delete data.password;
         }
-        else {
-            if (!data.password) {
-                delete data.password;
-            }
-            updateUser(location.state.id, data, setLoading, alert, navigate);
-        }
+        updateUser(location.state.id, data, setLoading, alert, navigate);
     };
 
     return(
@@ -139,4 +133,4 @@ const Create = () => {
     );
 };
 
-export default Create;
+export default Profile;

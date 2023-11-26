@@ -1,19 +1,24 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-    background-color: #0c1821;
-    height: 60px;
+    background-color: #1E2128;
+    height: 80px;
     display: flex;
     align-items: center;
     padding: 0 40px;
-    color: #ccc0dc !important;
+    color: #e0e0e2 !important;
     justify-content: space-between;
+`;
+
+export const LogoImage = styled.img`
+    height: 65px;
 `;
 
 export const SessionLinks = styled.div`
     display: flex;
-    width: 200px;
-    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
 `;
 
 export const Link = styled.a`
@@ -21,6 +26,24 @@ export const Link = styled.a`
     text-decoration: none;
     cursor: pointer;
     color: inherit !important;
+    margin: 0 15px; /* ajuste conforme necessário */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const Icon = styled.div`
+    font-size: 30px;
+`;
+
+export const UserIconContainer = styled.div`
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+`;
+
+export const UserIcon = styled.div`
+    font-size: 50px;
 `;
 
 export const Children = styled.div`

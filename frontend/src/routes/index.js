@@ -1,6 +1,7 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import Home from '../pages/home';
 import List from '../pages/user/list';
-import Create from '../pages/user/create';
+import Profile from '../pages/user/profile';
 import Register from '../pages/user/register';
 import Login from '../pages/user/login';
 import Devices from '../pages/user/devices';
@@ -15,6 +16,14 @@ const RoutesComponent = () => {
             <Route
                 path="/"
                 element={
+                    <Menu>
+                        <Home />
+                    </Menu>
+                }
+            />
+            <Route
+                path="/list"
+                element={
                     <Menu
                         title="Usuários"
                         subTitle=""
@@ -24,14 +33,14 @@ const RoutesComponent = () => {
                 }
             />
             <Route
-                path="/create"
+                path="/profile"
                 element={
                     <Menu
-                        title="Usuários"
+                        title="Perfil"
                         subTitle=""
                         onBack={() => navigate("/")}
                     >
-                        <Create />
+                        <Profile />
                     </Menu>
                 }
             />
