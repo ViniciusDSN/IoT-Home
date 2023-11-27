@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Loading } from "../../../components";
 import { useForm } from "react-hook-form";
-import { Header } from "./styles"; // Importe Header do seu arquivo de estilos
+import { Header } from "./styles";
 import { Table } from "antd";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
@@ -54,6 +54,7 @@ const Devices = () => {
     const sortedData = [...sensorData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     return (
       <div>
+        <div style={{ marginTop: "20px" }} />
         <Table
           columns={[
             {
@@ -77,9 +78,9 @@ const Devices = () => {
 
   return (
     <>
-        {loading && <Loading />} {/* Show loading indicator while data is being fetched */}
+        {loading && <Loading />}
 
-        {sensorData && sensorData.length > 0 && renderSensorData()} {/* Render the sensor data if available */}
+        {sensorData && sensorData.length > 0 && renderSensorData()}
     
         <Header>
             <Button

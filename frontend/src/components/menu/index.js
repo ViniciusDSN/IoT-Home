@@ -52,6 +52,7 @@ const MenuComponent = ({ children, onBack, title, subTitle }) => {
                     onBack={onBack}
                     title={title}
                     subTitle={subTitle}
+                    style={{ background: '#fff', borderRadius: '8px' }}
                 />
                 {children}
             </Children>

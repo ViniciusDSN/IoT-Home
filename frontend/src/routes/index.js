@@ -74,7 +74,7 @@ const RoutesComponent = () => {
                 path="/devices"
                 element={
                     <Menu
-                        title="Devices"
+                        title="Dispositivos"
                         subTitle=""
                         onBack={() => navigate("/")}
                     >

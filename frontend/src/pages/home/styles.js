@@ -9,13 +9,15 @@ export const TextPrincipal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 80vh;
-  margin-left: -70vh;
+  height: 75vh;
+  margin-left: -15vh;
 `;
 
 export const TextLugar = styled.span`
   color: #0059B2;
   display: inline;
+  margin-top: -4vw;
+  margin-left: 45vh;
 `;
 
 export const TransparentButton = styled.button`
@@ -23,8 +25,11 @@ export const TransparentButton = styled.button`
   color: #0059B2;
   border: 2px solid #0059B2;
   border-radius: 8px;
-  padding: 0.5em; /* Ajuste o tamanho conforme necessário */
-  margin-top: 10px;
+  padding: 0.7em; /* Ajuste o tamanho conforme necessário */
+  width: 200px;
+  font-size: 25px;
+  margin-top: -20.8vw;
+  margin-left: 95vh;
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
 
