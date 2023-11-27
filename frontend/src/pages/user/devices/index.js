@@ -52,26 +52,31 @@ const Devices = () => {
 
   const renderSensorData = () => {
     const sortedData = [...sensorData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+    const columns = [
+      {
+        title: 'Estado',
+        dataIndex: 'sensorValue',
+        key: 'sensorValue',
+        render: (text) => (text ? 'Porta fechada' : 'Porta aberta'),
+      },
+      {
+        title: 'Horário',
+        dataIndex: 'createdAt',
+        key: 'createdAt',
+        render: (text) => new Date(text).toLocaleString(),
+      },
+    ];
+
+    // Configurando a paginação para exibir no máximo 5 linhas por página
+    const pagination = {
+      pageSize: 6,
+    };
+
     return (
       <div>
-        <div style={{ marginTop: "20px" }} />
-        <Table
-          columns={[
-            {
-              title: "Estado",
-              dataIndex: "sensorValue",
-              key: "sensorValue",
-              render: (text) => (text ? "Porta fechada" : "Porta aberta"),
-            },
-            {
-              title: "Horário",
-              dataIndex: "createdAt",
-              key: "createdAt",
-              render: (text) => new Date(text).toLocaleString(),
-            },
-          ]}
-          dataSource={sortedData}
-        />
+        <div style={{ marginTop: '20px' }} />
+        <Table columns={columns} dataSource={sortedData} pagination={pagination} />
       </div>
     );
   };
@@ -81,7 +86,7 @@ const Devices = () => {
         {loading && <Loading />}
 
         {sensorData && sensorData.length > 0 && renderSensorData()}
-    
+ 
         <Header>
             <Button
             label="Atualizar"
