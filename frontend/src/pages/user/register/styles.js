@@ -17,4 +17,5 @@ export const TableStyle = styled.div`
     display: flex;
     flex-direction: column;
     margin: 40px auto;
+    padding: 0 40px;
 `;
