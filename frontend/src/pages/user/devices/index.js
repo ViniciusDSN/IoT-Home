@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Loading } from "../../../components";
 import { useForm } from "react-hook-form";
-import { Header } from "./styles";
+import { Header, TableStyle } from "./styles";
 import { Table } from "antd";
 import { useAlert } from "react-alert";
 import { useNavigate } from "react-router-dom";
@@ -52,7 +52,7 @@ const Devices = () => {
 
   const renderSensorData = () => {
     const sortedData = [...sensorData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+  
     const columns = [
       {
         title: 'Estado',
@@ -67,17 +67,16 @@ const Devices = () => {
         render: (text) => new Date(text).toLocaleString(),
       },
     ];
-
-    // Configurando a paginação para exibir no máximo 5 linhas por página
+  
     const pagination = {
       pageSize: 6,
     };
-
+  
     return (
-      <div>
+      <TableStyle>
         <div style={{ marginTop: '20px' }} />
         <Table columns={columns} dataSource={sortedData} pagination={pagination} />
-      </div>
+      </TableStyle>
     );
   };
 

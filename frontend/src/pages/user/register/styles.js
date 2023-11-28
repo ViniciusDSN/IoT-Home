@@ -11,3 +11,10 @@ export const Link = styled.a`
     cursor: pointer;
     color: #0059B2 !important;
 `;
+
+export const TableStyle = styled.div`
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto;
+`;

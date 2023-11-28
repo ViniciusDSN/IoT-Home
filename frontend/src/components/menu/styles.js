@@ -46,10 +46,14 @@ export const UserIcon = styled.div`
     font-size: 50px;
 `;
 
-export const Children = styled.div`
+export const Header = styled.div`
     max-width: 1280px;
     display: flex;
     flex-direction: column;
     margin: 40px auto;
     padding: 0 40px;
+`;
+
+export const Children = styled.div`
+
 `;

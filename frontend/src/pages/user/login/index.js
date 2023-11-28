@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Row, Col } from "antd";
-import { SessionButtons, Link } from "./styles";
+import { SessionButtons, Link, TableStyle } from "./styles";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAlert } from "react-alert";
@@ -45,61 +45,63 @@ const Login = () => {
             {loading && <Loading />}
             {!loading &&
                 <form onSubmit={handleSubmit(login)}>
-                    <Row gutter={[20, 20]}>
-                        <Col className="gutter-row" span={12}>
-                            <Controller
-                                name="email"
-                                control={control}
-                                render={({ field: { onChange, value, ref }}) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        ref={ref}
-                                        label="Email"
-                                        placeholder="Digite o email"
-                                    />
-                                )}
-                            />
-                            {errors.email && (<ErrorMessage>{errors?.email?.message}</ErrorMessage>)}
-                        </Col>
-                        <Col className="gutter-row" span={12}>
-                            <Controller
-                                name="password"
-                                control={control}
-                                render={({ field: { onChange, value, ref }}) => (
-                                    <Input
-                                        value={value}
-                                        onChange={onChange}
-                                        ref={ref}
-                                        label="Senha"
-                                        placeholder="Digite a senha"
-                                        type="password"
-                                    />
-                                )}
-                            />
-                            {errors.password && (<ErrorMessage>{errors?.password?.message}</ErrorMessage>)}
-                        </Col>
-                        <Col span={12}>
-                            <p>
-                                Não possui cadastro?
-                            </p>
-                            <Link onClick={() => navigate("/register")}>Cadastrar</Link>
-                        </Col>
-                        <Col span={12}>
-                            <SessionButtons>
-                                <Button
-                                    label="Cancelar"
-                                    onClick={(() => navigate("/"))}
+                    <TableStyle>
+                        <Row gutter={[20, 20]}>
+                            <Col className="gutter-row" span={12}>
+                                <Controller
+                                    name="email"
+                                    control={control}
+                                    render={({ field: { onChange, value, ref }}) => (
+                                        <Input
+                                            value={value}
+                                            onChange={onChange}
+                                            ref={ref}
+                                            label="Email"
+                                            placeholder="Digite o email"
+                                        />
+                                    )}
                                 />
-                                <div style={{ marginLeft: "10px" }} />
-                                <Button
-                                    label="Entrar"
-                                    type="primary"
-                                    htmlType="submit"
+                                {errors.email && (<ErrorMessage>{errors?.email?.message}</ErrorMessage>)}
+                            </Col>
+                            <Col className="gutter-row" span={12}>
+                                <Controller
+                                    name="password"
+                                    control={control}
+                                    render={({ field: { onChange, value, ref }}) => (
+                                        <Input
+                                            value={value}
+                                            onChange={onChange}
+                                            ref={ref}
+                                            label="Senha"
+                                            placeholder="Digite a senha"
+                                            type="password"
+                                        />
+                                    )}
                                 />
-                            </SessionButtons>
-                        </Col>
-                    </Row>
+                                {errors.password && (<ErrorMessage>{errors?.password?.message}</ErrorMessage>)}
+                            </Col>
+                            <Col span={12}>
+                                <p>
+                                    Não possui cadastro?
+                                </p>
+                                <Link onClick={() => navigate("/register")}>Cadastrar</Link>
+                            </Col>
+                            <Col span={12}>
+                                <SessionButtons>
+                                    <Button
+                                        label="Cancelar"
+                                        onClick={(() => navigate("/"))}
+                                    />
+                                    <div style={{ marginLeft: "10px" }} />
+                                    <Button
+                                        label="Entrar"
+                                        type="primary"
+                                        htmlType="submit"
+                                    />
+                                </SessionButtons>
+                            </Col>
+                        </Row>
+                    </TableStyle>
                 </form>
             }
         </>

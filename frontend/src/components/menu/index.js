@@ -1,4 +1,4 @@
-import { Body, SessionLinks, Link, LogoImage, UserIconContainer, UserIcon, Icon, Children } from "./styles";
+import { Body, SessionLinks, Link, LogoImage, UserIconContainer, UserIcon, Icon, Children, Header} from "./styles";
 import { PageHeader } from '@ant-design/pro-layout';
 import { useNavigate } from "react-router-dom";
 import { AiOutlineWifi, AiFillHome } from 'react-icons/ai';
@@ -47,13 +47,15 @@ const MenuComponent = ({ children, onBack, title, subTitle }) => {
                 </Link>
             </Body>
             <Children>
-                <PageHeader
-                    className="site-page-header"
-                    onBack={onBack}
-                    title={title}
-                    subTitle={subTitle}
-                    style={{ background: '#fff', borderRadius: '8px' }}
-                />
+                <Header>
+                    <PageHeader
+                        className="site-page-header"
+                        onBack={onBack}
+                        title={title}
+                        subTitle={subTitle}
+                        style={{ background: '#fff', borderRadius: '8px' }}
+                    />
+                </Header>
                 {children}
             </Children>
         </>

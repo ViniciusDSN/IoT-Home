@@ -1,4 +1,4 @@
-import { Header } from "./styles";
+import { Header, TableStyle } from "./styles";
 import { Button, Loading } from "../../../components";
 import { Table, Popconfirm } from "antd";
 import { useEffect, useState } from "react";
@@ -95,7 +95,8 @@ const List = () => {
     ]
 
     return (
-        <>
+        <>  
+        <TableStyle>
             <Header>
                 <Button
                     label="Adicionar Usuário"
@@ -104,7 +105,9 @@ const List = () => {
                 />
             </Header>
             {loading && <Loading/>}
+            
             {!loading && <Table columns={columns} dataSource={data}/>}
+        </TableStyle>
         </>
     );
 };
