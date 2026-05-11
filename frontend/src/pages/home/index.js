@@ -77,7 +77,7 @@ const Home = () => {
                 <CreatorNames>
                     Criado por Vinícius e Isabela
                 </CreatorNames>
-                {/* <SocialIcons>
+                <SocialIcons>
                     <FaInstagram size="2vw" color="#e0e0e2" onClick={instaVini} style={{ cursor: 'pointer' }} />
                     <SocialText>@viniciusdsnascimento</SocialText>
                     <FaGithub size="2vw" color="#e0e0e2" onClick={gitVini} style={{ cursor: 'pointer' }} />
@@ -87,7 +87,7 @@ const Home = () => {
                     <SocialText>@martinello_isabela</SocialText>
                     <FaGithub size="2vw" color="#e0e0e2" onClick={gitIsa} style={{ cursor: 'pointer' }} />
                     <SocialText>/IsabelaZanette</SocialText>
-                </SocialIcons> */}
+                </SocialIcons>
             </Footer>
         </>
     );
